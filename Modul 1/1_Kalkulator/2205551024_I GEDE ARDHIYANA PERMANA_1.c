@@ -17,11 +17,10 @@ int main(){
     printf ("Hasil peengurangan  : %d\n", kurang);
     kali = a*b;
     printf ("Hasil perkalian     : %d\n", kali);
-    bagi = a/b;
+    bagi = (float)a/(float)b;
     printf("Hasil pembagian     : %.2f\n", bagi);
     modulus = a%b;
     printf("Hasil modulus       : %d\n", modulus);
     printf ("================================\n");
     return 0;
 }
-
