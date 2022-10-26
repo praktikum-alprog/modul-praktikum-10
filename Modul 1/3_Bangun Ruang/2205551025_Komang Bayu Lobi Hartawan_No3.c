@@ -48,8 +48,8 @@ int main(){
 			printf("luas permukaan tabung adalah %.2f", luas_Tabung);
 			printf("\nvolume tabung adalah %.2f", volume_Tabung);
 			printf("\nApakah anda ingin mengulang?(y/t)\n");
-            printf("Pilihan saya : ");
-            scanf(" %c", &menu);
+           	 	printf("Pilihan saya : ");
+            		scanf(" %c", &menu);
 			break;
 		
 		case 2: 
@@ -61,8 +61,8 @@ int main(){
 			printf("luas permukaan bola adalah %.2f", luas_Bola);
 			printf("\nvolume bola adalah %.2f", volume_Bola);
 			printf("\nApakah anda ingin mengulang?(y/t)\n");
-            printf("Pilihan saya : ");
-            scanf(" %c", &menu);
+            		printf("Pilihan saya : ");
+            		scanf(" %c", &menu);
 			break;
 		
 		case 3: 
@@ -84,8 +84,8 @@ int main(){
 			printf("luas permukaan prisma segitiga adalah %.2f", luas_prisma, alas_prisma, tinggi_S, tinggi_P);
 			printf("\nvolume prisma segitiga adalah adalah %.2f", volume_prisma, sisi_A,sisi_B, sisi_C, tinggi_S, tinggi_P);
 			printf("\nApakah anda ingin mengulang?(y/t)\n");
-            printf("Pilihan saya : ");
-            scanf(" %c", &menu);
+            		printf("Pilihan saya : ");
+            		scanf(" %c", &menu);
 			break;
 			
 		case 4: 			
@@ -101,8 +101,8 @@ int main(){
 			printf("luas permukaan limas segiempat adalah %.2f", luas_limas, alas_limas, tinggi_limas);
 			printf("\nvolume limas segiempat adalah adalah %.2f", volume_limas, sisi_limas, tinggi_limas);
    			printf("\nApakah anda ingin mengulang?(y/t)\n");
-            printf("Pilihan saya : ");
-            scanf(" %c", &menu);
+            		printf("Pilihan saya : ");
+            		scanf(" %c", &menu);
 			break;
 
 		case 5: 
@@ -118,8 +118,8 @@ int main(){
 			printf("luas permukaan kerucut adalah %.2f", luas_kerucut, jari_jari_kerucut, tinggi_kerucut, selimut_kerucut);
 			printf("\nvolume kerucut adalah %.2f", volume_kerucut, jari_jari_kerucut, tinggi_kerucut);
 			printf("\nApakah anda ingin mengulang?(y/t)\n");
-            printf("Pilihan saya : ");
-            scanf(" %c", &menu);
+            		printf("Pilihan saya : ");
+            		scanf(" %c", &menu);
 			break;			
 		}
 	}while(menu == 'y');
