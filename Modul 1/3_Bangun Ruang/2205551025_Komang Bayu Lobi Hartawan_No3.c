@@ -1,71 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define PHI 3.14
+
 //Fungsi Tabung
-float luas_permukaan_tabung(float jari_jari, float tinggi){
-	
-	float luas;
-	luas = 2*PHI*jari_jari*(jari_jari+tinggi);
-	return luas;
-}
-float volume_tabung(float jari_jari, float tinggi){
-	
-	float volume;
-	volume = PHI*jari_jari*jari_jari*tinggi;
-	return volume;
-}
+float luas_permukaan_tabung(float jari_jari, float tinggi);
+float volume_tabung(float jari_jari, float tinggi);
 //Fungsi Bola
-float luas_permukaan_bola(float jari_jari){
-	
-	float luas;
-	luas = 4*PHI*jari_jari*jari_jari;
-	return luas;
-}
-float volume_bola(float jari_jari){
-	
-	float volume;
-	volume = (4*PHI*jari_jari*jari_jari*jari_jari)/3;
-	return volume;
-}
+float luas_permukaan_bola(float jari_jari);
+float volume_bola(float jari_jari);
 //Fungsi Prisma Segitiga
-float luas_permukaan_prisma_segitiga(float sisi_A, float sisi_B,float sisi_C, float alas, float tinggi_S, float tinggi_P){
-	
-	float luas;
-	luas = (2*(0.5*alas*tinggi_S))+((sisi_A+sisi_B+sisi_C)*tinggi_P);
-	return luas;
-}
-float volume_prisma_segitiga(float alas, float tinggi_S, float tinggi_P){
-	
-	float volume;
-	volume = (0.5*alas*tinggi_S)*tinggi_P;
-	return volume;
-}
+float luas_permukaan_prisma_segitiga(float sisi_A, float sisi_B,float sisi_C, float alas, float tinggi_S, float tinggi_P);
+float volume_prisma_segitiga(float alas, float tinggi_S, float tinggi_P);
 //Fungsi Limas Segiempat
-float luas_permukaan_limas_segiempat(float sisi, float alas, float tinggi){
-	
-	float luas;
-	luas = (sisi*sisi)+4*(0.5*alas*tinggi);
-	return luas;
-}
-float volume_limas_segiempat(float sisi, float tinggi){
-	
-	float volume;
-	volume = (1*sisi*sisi*tinggi)/3;
-	return volume;
-}
+float luas_permukaan_limas_segiempat(float sisi, float alas, float tinggi);
+float volume_limas_segiempat(float sisi, float tinggi);
 //Fungsi Kerucut
-float luas_permukaan_kerucut(float jari_jari, float tinggi, float selimut){
-	
-	float luas;
-	luas = PHI*jari_jari*jari_jari+(PHI*jari_jari*selimut);
-	return luas;
-}
-float volume_kerucut(float jari_jari, float tinggi){
-	
-	float volume;
-	volume = 1*PHI*jari_jari*jari_jari*tinggi/3;
-	return volume;
-}
+float luas_permukaan_kerucut(float jari_jari, float tinggi, float selimut);
+float volume_kerucut(float jari_jari, float tinggi);
 int main(){
 	int pilihan;
 	char menu;
@@ -85,7 +36,6 @@ int main(){
 	printf("\n1. Tabung\n2. Bola\n3. Prisma Segitiga\n4. Limas Segiempat\n5. Kerucut");
 	printf("\nMasukan Pilihan Menu Anda:");
 	scanf("%d", &pilihan);
-	do{
 	switch(pilihan){
 		case 1: 
 			printf("\nPerhitungan Luas Permukaan dan Volume Tabung");
@@ -171,8 +121,73 @@ int main(){
             printf("Pilihan saya : ");
             scanf(" %c", &menu);
 			break;			
-	}
-	}while (menu == 't');
-}while(menu == 'y');
-return 0;
+		}
+	}while(menu == 'y');
+	printf("\nTerimakasih Telah Menggunakan Program Ini!");
+	return 0;
+}
+//Fungsi Tabung
+float luas_permukaan_tabung(float jari_jari, float tinggi){
+	
+	float luas;
+	luas = 2*PHI*jari_jari*(jari_jari+tinggi);
+	return luas;
+}
+float volume_tabung(float jari_jari, float tinggi){
+	
+	float volume;
+	volume = PHI*jari_jari*jari_jari*tinggi;
+	return volume;
+}
+//Fungsi Bola
+float luas_permukaan_bola(float jari_jari){
+	
+	float luas;
+	luas = 4*PHI*jari_jari*jari_jari;
+	return luas;
+}
+float volume_bola(float jari_jari){
+	
+	float volume;
+	volume = (4*PHI*jari_jari*jari_jari*jari_jari)/3;
+	return volume;
+}
+//Fungsi Prisma Segitiga
+float luas_permukaan_prisma_segitiga(float sisi_A, float sisi_B,float sisi_C, float alas, float tinggi_S, float tinggi_P){
+	
+	float luas;
+	luas = (2*(0.5*alas*tinggi_S))+((sisi_A+sisi_B+sisi_C)*tinggi_P);
+	return luas;
+}
+float volume_prisma_segitiga(float alas, float tinggi_S, float tinggi_P){
+	
+	float volume;
+	volume = (0.5*alas*tinggi_S)*tinggi_P;
+	return volume;
+}
+//Fungsi Limas Segiempat
+float luas_permukaan_limas_segiempat(float sisi, float alas, float tinggi){
+	
+	float luas;
+	luas = (sisi*sisi)+4*(0.5*alas*tinggi);
+	return luas;
+}
+float volume_limas_segiempat(float sisi, float tinggi){
+	
+	float volume;
+	volume = (1*sisi*sisi*tinggi)/3;
+	return volume;
+}
+//Fungsi Kerucut
+float luas_permukaan_kerucut(float jari_jari, float tinggi, float selimut){
+	
+	float luas;
+	luas = PHI*jari_jari*jari_jari+(PHI*jari_jari*selimut);
+	return luas;
+}
+float volume_kerucut(float jari_jari, float tinggi){
+	
+	float volume;
+	volume = 1*PHI*jari_jari*jari_jari*tinggi/3;
+	return volume;
 }
