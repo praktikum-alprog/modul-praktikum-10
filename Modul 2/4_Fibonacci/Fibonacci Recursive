@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void close()
+{
+    system("cls");
+    printf("\n\t==============================");
+    printf("\n\t|     Terimakasih telah      |");
+    printf("\n\t|   menggunakan program ini  |");
+    printf("\n\t==============================");
+    printf("\n\n");
+    exit(0);
+}
+
+int fib(int n)
+{
+    if(n == 0)
+        return 0;
+    else if(n == 1)
+        return 1;
+    else
+        return fib(n-1) + fib(n-2);
+}
+
+int main()
+{
+    // REKURSIF
+
+    int opt;
+    int n;
+    do{
+    system("cls");
+    printf("=====================================\n");
+    printf("|           DERET FIBONACCI         |\n");
+    printf("=====================================\n\n");
+
+    printf("     Masukan panjang deret : ");
+    while (scanf("%d", &n) == 0 || n < 0)
+    {
+        printf("   # Invalid input . . .\n\n");
+        printf("     Masukan panjang deret : ");
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+    }
+
+    printf("\n");
+    printf("FIBONACCI : ");
+    for(int i = 0; i < n; i++)
+    {
+        printf("%d ", fib(i));
+    }
+    if(n == 0)
+    printf("-");
+
+    printf("\n\n=====================================\n");
+    printf("|     [1] Ulangi    [2] Keluar      |\n");
+    printf("=====================================\n");
+    printf(">> ");
+    while (scanf("%d", &opt) == 0 || opt < 1 || opt > 2)
+    {
+        printf("Invalid input . . .\n");
+        printf("\n>> ");
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+    }
+    } while(opt != 2);
+    close();
+
+
+    return 0;
+}
