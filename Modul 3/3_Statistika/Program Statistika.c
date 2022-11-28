@@ -1,142 +1,194 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <math.h>
+#include <string.h>
 
-void reinput();
-void statistika();
-void rangeVldIntReinput();
-void rangeVldInt();
+void menu();
+void seedArray(int arr[],int n);
+double input();
+void hapus_buffer();
+void reset();
+void quickSort(int arr[], int low, int high);
+int partition (int arr[], int low, int high);
+void printArray(int arr[], int n);
+float median(int arr[],int n);
+float mean(int arr[],int n);
+float modus(int arr[],int n);
 
 int main(){
+	printf("=====================================\n");
+	printf("||        PROGRAM STATISTIKA       ||\n");
+	printf("=====================================\n");
+    menu();
+    return 0;
+}
+
+void menu(){
+    float pilihan;
+    int cek;
     int n;
-    judulprogram();
-   	rangeVldInt(&n, "\n\n\tMasukkan Jumlah Data : ");
-	fflush(stdin);
-	statistika(&n);
-	reinput();
-}
-
-void judulprogram(){
-    system("cls");
-    printf("\n\t\t\t\t\t||================================||");
-    printf("\n\t\t\t\t\t||       Program Statistika       ||");
-    printf("\n\t\t\t\t\t||================================||");
-}
-
-void statistika(int *n){
-	judulprogram();
-    int a,b,temp = 0, q1, q2;
-    int data [*n], frekuensi[*n], modus, max=0,sum=0;
-
-    for (a = 0; a<*n;a++){
-        printf("\n\n\t\t\t\t\tMasukkan data ke-%d\t: ",a+1);
-        scanf("%d", &data[a]);
-    	sum=sum+data[a];
-    }
-
-	//sorting
-    for(a=0;a<(*n-1);a++){
-        for(b=a;b<*n;b++){
-            if(data[b]<data[a]){
-                temp=data[a];
-                data[a]=data[b];
-                data[b]=temp;
+    float hasil;
+    printf("Pilih operasi :\n\n1.Median\n2.Modus\n3.Mean\n4.Keluar Program\n\nPilihan : ");
+    pilihan = input();
+    cek = pilihan;
+    if (cek == pilihan){
+        if (pilihan>3 || pilihan < 1){
+                if (pilihan == 4){
+                        return;
+                } else {
+                    system("cls");
+                    printf("Input Salah!!!\n");
+                    menu();
+                }
+        } else {
+            printf("Masukkan panjang array : ");
+            n = input();
+            int arr[n];
+            seedArray(arr,n);
+            printf("Hasil sorting array : ");
+            quickSort(arr,0,n-1);
+            printArray(arr,n);
+            switch ((int)pilihan)
+            {
+            case 1:
+                hasil = median(arr,n);
+                printf("Median dari data adalah : ");
+                break;
+            case 2:
+                hasil = modus(arr,n);
+                printf("Modus dari data adalah : ");
+                break;
+            case 3:
+                hasil = mean(arr,n);
+                printf("Mean dari data adalah : ");
+                break;
             }
+            printf("%.2lf",hasil);
+            reset();
         }
-    }
-
-	printf("\n\t\t\t\t\t===============================");
-    printf("\n\t\t\t\t\tData setelah diurutkan : ");
-    for(a=0;a<*n;a++){
-        printf("%d ", data[a]);
-    }
-
-	//median
-	float median;
-    if(*n%2==1){
-        q2=(*n/2);
-        median=data[q2];
-        printf("\n\n\t\t\t\t\tMedian data tersebut : %.2f",median);
-    }else if(*n%2==0){
-		q1=(*n/2)-1;
-		q2=(*n/2);
-        median=((float)data[q1]+(float)data[q2])/2;
-        printf("\n\n\t\t\t\t\tMedian data tersebut : %.2f",median);
-    }
-
-	//mean
-	float mean;
-    mean=(float)sum/ *n;
-    printf("\n\n\t\t\t\t\tMean data tersebut : %.2f",mean);
-
-	//modus
-    for(a=0;a<=data[*n-1];a++){
-        frekuensi[a]=0;
-        for(b=0;b<*n;b++){
-            if(data[b]==a){
-                frekuensi[a]=frekuensi[a]+1;
-            }
-        }
-        if(frekuensi[a]>max){
-            max=frekuensi[a];
-			modus=a;
-        }
-    }
-    printf("\n\n\t\t\t\t\tModus data tersebut : %d\n",modus);
-}
-	
-void reinput(){
-    int pilih;
-    int n;
-    printf("\n\t\t\t\t\t===============================");
-    printf("\n\t\t\t\t\tApakah anda ingin mengulang operasi?\n");
-    printf("\n\t\t\t\t\t[1] Mengulang Perhitungan\n");
-    printf("\n\t\t\t\t\t[2] Keluar Dari Program\n");
-    rangeVldIntReinput(&pilih, "\n\t\t\t\t\tMasukan Pilihan = ");
-    if(pilih == 1){
+     }else {
         system("cls");
-        main();
-    }else if(pilih == 2){
-    	system("cls");
-    	exit (0);
+        printf("Input Salah!!!\n");
+        menu();
     }
 }
 
-int validInt(int *var){
-	char buff[100];
-	char cek;
-	fflush(stdin);
-	if(fgets(buff, sizeof(buff), stdin) != NULL){
-		if(sscanf(buff, "%d %c", var, &cek) == 1) {
-			return 1;
-		}
-	}
-	return 0;
+void seedArray(int arr[],int n){
+	int i;
+    for (i=0; i<n; i++){
+        printf("Masukkan data ke %d : ",i+1);
+        *(arr+i) = input();
+    }
 }
 
-void reVldInt(int *var, char *prompt){
-	while(1){
-		printf(prompt);
-		if(validInt(var))
-			break;
-		printf("\n\t\t\t\t\tInput salah! Masukkan Angka\n");
-	}
+double input(){
+    double angka;
+    char karakter;
+    if (scanf("%lf%c",&angka,&karakter)!= 2 || angka<=0 || karakter != '\n' || karakter == ','){
+        hapus_buffer();
+        printf("Input Salah! Masukkan angka yang benar : ");
+        return input();
+    } else {
+        return angka;
+    }
 }
 
-void rangeVldInt(int *var, char *prompt){
-	while(1){
-		reVldInt(var, prompt);
-		if(*var >=1)
-			break;
-		printf("\n\t\t\t\t\tInput salah! Masukkan Angka Lebih dari 0\n");
-	}
+void hapus_buffer(){
+    char c;
+    while ((c = getchar()) != '\n' && c != EOF) ;
 }
 
-void rangeVldIntReinput(int *var, char *prompt){
-	while(1){
-		reVldInt(var, prompt);
-		if(*var == 1 || *var == 2)
-			break;
-		printf("\n\t\t\t\t\tInput salah! Pilih 1 atau 2.\n");
-	}
+void reset(){
+    int valid_reset;
+    char parameter[1];
+    printf("\n\nKembali menghitung?[Y/N] ");
+    gets(parameter);
+    if (!(strcmp(parameter,"Y")) || !(strcmp(parameter,"y"))){
+        system("cls");
+        menu();
+    } else if (!(strcmp(parameter,"N")) || !(strcmp(parameter,"n"))){
+        return;
+    } else {
+        system("cls");
+        printf("Input Salah!!!\n\a");
+        reset();
+    }
 }
+
+void quickSort(int arr[], int low, int high){
+    if (low < high)
+    {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+
+int partition (int arr[], int low, int high){
+    int pivot = *(arr+high);
+    int temp;
+    int i = (low - 1);
+	int j;
+    for (j = low; j <= high- 1; j++)
+    {
+        if (*(arr+j) <= pivot)
+        {
+            i++;
+            temp = *(arr+i);
+            *(arr+i) = *(arr +j);
+            *(arr +j) = temp;
+        }
+    }
+    temp = *(arr + i+1);
+    *(arr + i+1) = *(arr+high);
+    *(arr+high) = temp;
+    return (i + 1);
+}
+
+void printArray(int arr[], int n){
+   int i;
+   for (i=0; i < n; i++)
+       printf("%d ", arr[i]);
+   printf("\n");
+}
+
+float median(int arr[],int n){
+    float tengah;
+    if(n % 2 == 0)
+        tengah =(*(arr+((n-1)/2))+*(arr+(n/2)))/2.0;
+    else
+        tengah = *(arr+(n/2));
+    return tengah;
+}
+
+float mean(int arr[],int n){
+    float sum=0, avg;
+    int i;
+    for (i=0; i < n; i++)
+        sum = sum + *(arr+i);
+    avg = sum / (float)n;
+    return avg;
+}
+
+float modus(int arr[],int n){
+    float modus;
+    int max =0;
+	int i;
+	int j;
+    for (i = 0; i < n; i++){
+        int count = 0;
+        for (j = i+1;j<n;j++){
+            if(*(arr+i) == *(arr+j)){
+                count = count + 1;
+            }
+        if (count > max){
+            max = count;
+            modus = *(arr+i);
+        }
+        }
+    }
+    return modus;
+}
+
