@@ -29,8 +29,8 @@ int main(){
 		printf("\t\t\t+================================================+\n");
 	    printf("\t\t\t|         1. Masukan Data Mahasiswa              |\n");
 	    printf("\t\t\t|         2. Tampilkan Data Mahasiswa            |\n");
-	    printf("\t\t\t|         3. Pencarian Data Mahasiswa            |\n");
-	    printf("\t\t\t|         4. Perbarui Data Mahasiswa             |\n");
+	    printf("\t\t\t|         3. Perbarui data Data Mahasiswa        |\n");
+	    printf("\t\t\t|         4. Pencarian data Data Mahasiswa       |\n");
 	    printf("\t\t\t|         5. Keluar Sistem                       |\n");
 	    printf("\t\t\t+================================================+\n");
 		printf("\n\nMenu yang anda pilih[1][2][3][4][5] : ");
