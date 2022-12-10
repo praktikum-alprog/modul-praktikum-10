@@ -36,7 +36,7 @@ int main (){
     		break;
     	default :
     		printf("Enter the Correct Menu!!!\n\n");
-		fflush(stdin);
+		getchar();
     		system("pause");
     		main();
 	}
