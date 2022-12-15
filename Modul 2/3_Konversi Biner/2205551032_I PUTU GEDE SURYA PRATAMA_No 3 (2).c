@@ -1,79 +1,80 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void input_int(int *var){
-	char buffer[512];
-	fgets(buffer, sizeof(buffer), stdin);
-	while(sscanf(buffer, "%d", var)!=1){
-		printf("\nsilahkan masukan kembali : ");
-		fgets(buffer,sizeof(buffer), stdin);
+void validasi_integer(char *cek, int *tujuan){
+	while(!(sscanf(cek, "%d", tujuan)==1)){
+		printf("Input salah\n");
+		printf("Silahkan masukkan inputan yang benar: ");
+		fgets(cek, 9, stdin);
 	}
 }
 
-void biner_desimal(){
-	int angka_biner, angka_desimal=0, i=1, digit;
-	printf("\tKONVERSI BINER KE DESIMAL\n");
-	printf("======================================\n\n");
-	printf("Masukan Bilangan Biner : ");
-	input_int(&angka_biner);
-	while(angka_biner!=0){
-		digit=angka_biner%10;
-		angka_desimal= angka_desimal+(digit*i);
-		i=i*2;
-		angka_biner = angka_biner/10;
-	}				
-	printf("Hasil Konversi Bilangan Desimal :%d\n", angka_desimal);
+void dec_biner(int decimal){
+	float biner[50];
+	int i=0;
+	while(decimal!=0){
+		biner[i] = decimal%2;
+		i++;
+		decimal = decimal/2;
+	}
+	printf("\nAngka Binner = ");
+	for(i=(i-1); i>=0; i--)
+	printf("%.0f", biner[i]);
+	getch();
 }
 
-void desimal_biner(){
-	int a[10], n, f;
-	printf("\tKONVERSI DESIMAL KE BINER\n");
-	printf("======================================\n\n");
-	printf("Masukan Bilangan Desimal: ");
-	input_int(&n);
-	for(f=0; n>0; f++){
-		a[f] = n%2;
-		n = n/2;
+void biner_dec(int biner){
+	int decimal=0;
+	int bobot=1;
+	int tampungan;
+	while(biner!=0){
+		tampungan=biner%10;
+		decimal=decimal+tampungan*bobot;
+		biner=biner/10;
+		bobot=bobot*2;
 	}
-	printf("Hasil Konversi Bilangan Biner:");
-	for(f=f-1 ;f>=0 ;f--) {
-		printf("%d",a[f]);
-	}
+	printf("\nAngka Desimal = %d", decimal);
 }
 
 int main(){
-	int menu;
-	int pilihan;
-	
-	do {
-		system ("cls");
-		printf ("======================================\n");
-		printf ("|       MENU KONVERSI BILANGAN       |\n");
-		printf ("======================================\n\n");
-		printf("1. Konversi Bilangan Biner ke Desimal\n2. Konversi Bilangan Desimal ke Biner\n\n");
-		printf ("======================================\n");
-		printf("Pilihan Menu Konversi Anda [1] atau [2] : ");
-		input_int(&pilihan);
-		printf ("======================================\n\n");
-	
-		switch(pilihan){
-			case 1:
-				biner_desimal();
-				printf("======================================\n");
-				printf("\nApakah anda ingin mengulang?(y/t)\n");
-			    printf("Pilihan saya : ");
-			    scanf(" %c", &menu);
-				break;
-			case 2:
-				desimal_biner();
-				printf("\n======================================\n");
-				printf("\nApakah anda ingin mengulang?(y/t)\n");
-			    printf("Pilihan saya : ");
-			    scanf(" %c", &menu);
-				break;
-		}
+	char cek[10];
+	int pil1, pil2;
+	int des, bin;
+	do{
+		printf("=================================================\n");
+		printf("|  PROGRAM KONVERSI BILANGAN DESIMAL DAN BINER  |\n");
+		printf("=================================================\n");
+		printf("\nPilihan menu: \n\n");
+		printf("[1] Desimal ke Biner\n");
+		printf("[2] Biner ke Desimal\n\n");
+		printf("Masukkan pilihan anda: ");
+		fgets(cek, 9, stdin);
+		validasi_integer(cek, &pil2);
+		system("cls");
 		
-	}while (menu == 'y');
-	printf ("Terima Kasih.....");
+		if(pil2==1){
+			printf("===== KONVERSI BILANGAN DESIMAL KE BINER =====\n");
+			printf("=================================================\n");
+			printf("Masukkan bilangan desimal: ");
+			fgets(cek, 9, stdin);
+			validasi_integer(cek, &des);
+			dec_biner(des);
+		}else if(pil2==2){
+			printf("===== KONVERSI BILANGAN BINER KE DESIMAL =====\n");
+			printf("=================================================\n");
+			printf("Masukkan bilangan biner: ");
+			fgets(cek, 9, stdin);
+			validasi_integer(cek, &bin);
+			biner_dec(bin);
+		}else{
+			printf("Tidak ada di pilihan!!");
+		}
+		printf("\n\nApakah ingin mengulang program?\n");
+		printf("[1] Mengulang program\n");
+		printf("[2] Keluar dari program\n\n");
+		printf("Masukkan pilihan 1 atau pilihan 2 : ");
+		fgets(cek, 9, stdin);
+		validasi_integer(cek, &pil1);
+		system("cls");	
+	}while(pil1==1);
 	return 0;
 }
